@@ -1,0 +1,14 @@
+*.o
+*.cmd
+*.a
+*.ko
+*.mod
+*.mod.c
+cscope*
+config.*
+*.m4
+libtool
+stamp*
+*~
+Module.symvers
+modules.order
