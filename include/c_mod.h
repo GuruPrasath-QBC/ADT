@@ -15,7 +15,7 @@
 struct hlist_node {};
 #endif
 
-enum urlf_c_e {HIGH, MID, LOW, NONE};
+enum urlf_c_e {urlft_HIGH, urlft_MID, urlft_LOW, urlft_NONE};
 typedef enum urlf_c_e urlf_c;
 
 struct urlf_s {
@@ -25,11 +25,17 @@ struct urlf_s {
 
 struct cTe_s {
 	struct hlist_node node;
-	struct urlf_s *d;
+	struct urlf_s d;
 	urlf_c type;
 };
 
 typedef struct cTe_s cTe_t;
+
+struct usIO_s {
+	uint32_t ip;
+	uint8_t port;
+	urlf_c type;
+};
 
 /* IOCTLs */
 #define URLF_IOBASE	'Q'
