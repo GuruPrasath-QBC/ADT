@@ -1,44 +1,28 @@
-# SPDX-License-Identifier: GPL-2.0-or-later
 #
-# Makefile for QBC URL Filter kernel module.
+# Makefile for QBC App Detection and Tuning (ADT) subsystem.
 #
-ifneq ($(KERNELRELEASE),)
-#obj-$(CONFIG_QBC_URLF)	+= c_mod.o
-obj-m			+= c_mod.o
+ks:
+	$(MAKE) -C kspace all
 
-c_mod-objs		:=
+us:
+	$(MAKE) -C uspace all
 
-EXTRA_CFLAGS		:=
+all: ks us
 
-EXTRA_LDFLAGS		:=
-
-else
-# Called from external kernel module build
-
-KERNELRELEASE	?= $(shell uname -r)
-KDIR	?= /lib/modules/${KERNELRELEASE}/build
-MDIR	?= /lib/modules/${KERNELRELEASE}
-PWD	:= $(shell pwd)
-
-all:
-	$(MAKE) -C $(KDIR) M=$(PWD) #modules
+dev: all
+	cscope -R -b
 
 clean:
-	$(MAKE) -C $(KDIR) M=$(PWD) clean
+	$(MAKE) -C kspace clean
+	$(MAKE) -C uspace clean
 
-help:
-	$(MAKE) -C $(KDIR) M=$(PWD) help
+dclean: clean
+	git clean -f -d -x
+	git clean -f -d -X
 
-#install: c_mod.ko
-#	rm -f ${MDIR}/kernel/fs/exfat/exfat.ko
-#	install -m644 -b -D exfat.ko ${MDIR}/kernel/fs/exfat/exfat.ko
-#	depmod -aq
+#install:
 
 #uninstall:
-#	rm -rf ${MDIR}/kernel/fs/exfat
-#	depmod -aq
-
-endif
 
 .PHONY : all clean #install uninstal
 

@@ -1,6 +1,7 @@
-// SPDX-License-Identifier: GPL-2.0-or-later
 /*
- * Copyright (C) 2021 Qubercomm Technologies
+ * Copyright (c) 2021 Qubercomm Technologies, Inc.
+ * All Rights Reserved.
+ * Qubercomm Technologies, Inc. Confidential and Proprietary.
  */
 
 #include<linux/module.h>
